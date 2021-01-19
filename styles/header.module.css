@@ -72,9 +72,7 @@ background-color: white;
   .dropdown:hover .dropdowncontent {
     display: block;
   }
-
-
-
+ 
 
 
 
@@ -101,6 +99,12 @@ background-color: white;
       }
  
   }
+  @media screen and (max-width: 600px) {
+    .header{
+      height:500px;
+    }
+  }
+
 @media screen and (max-width:500px){
     .formdiv {
         width: 370px;
@@ -108,6 +112,9 @@ background-color: white;
       }
       #picturetype {
         width: 200px;
+      }
+      .com {
+        font-size: 12px;
       }
     
 }
@@ -122,3 +129,4 @@ background-color: white;
         width: 170px;
       }
 }
+

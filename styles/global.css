@@ -26,7 +26,40 @@
    
  
 }
-
+.w3-col.s3 {
+    width: 270px !important;
+  }
+  img {
+    height: 350px !important;
+    width: 270px !important;
+  }
+@media screen and (max-width:500px){
+    .w3-col.s3 {
+      width: 290px !important;
+    }
+    img {
+      height: 370px !important;
+      width: 290px !important;
+    }
+    }
+ .onebutton {
+          font-family: "ABeeZee";
+          color: #1a202c;
+          font-size: 15px;
+          padding: 4px 14px;
+          border-top: 1px solid #1a202c;
+          border-right: 1px solid #1a202c;
+          border-bottom: 1px solid #1a202c;
+          border-top-right-radius: 50%;
+          border-bottom-right-radius: 50%;
+        }
+        .onebutton:hover,
+        .onebutton:focus {
+          border-top: 1px solid #808080;
+          border-right: 1px solid #808080;
+          border-bottom: 1px solid #808080;
+          color: #808080;
+        }
 .text{
     height:130px;
     color:#1a202c;

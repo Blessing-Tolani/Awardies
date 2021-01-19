@@ -5,14 +5,16 @@ module.exports = {
   darkMode: 'media', // 'media' or 'class'
   theme: {
     screens: {
+       'tablet': {'max': '900px'},
+       'medium':{'max':'600px'},
+       'mobile': {'max': '500px'},
       'phone':{'max':'400px'},
-      'mobile': {'max': '500px'},
-      'tablet': {'max': '900px'},
       ...defaultTheme.screens
     },
     extend: {
       fontFamily: {
-        'old': ['Old Standard TT', 'serif']
+        'old': ['Old Standard TT', 'serif'],
+        'sofia':['Sofia', 'cursive']
       },
       colors: {
         'accent-1': '#333',
