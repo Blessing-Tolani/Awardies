@@ -62,7 +62,7 @@ export default function Header({ visibility, handler, handler2 }) {
           <source src="video/head.mp4" />
         </video>
         <div className="absolute z-30 w-full ">
-          <div className="flex  items-center justify-between  pl-5 h-40 md:pl-10">
+          <div className="flex  items-center justify-between  pl-5 medium:h-28 h-40 md:pl-10">
             <div className="flex items-center">
               <span className="text-xl  text-white z-10">
                 <GrCentos />
@@ -103,7 +103,7 @@ export default function Header({ visibility, handler, handler2 }) {
                   <FaSearch />
                 </button>
                 <input
-                  className=" placeholder-gray-500 "
+                  className=" placeholder-gray-500 placeholder-text-xs sm:placeholder-text-sm"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   type="text"
@@ -139,7 +139,7 @@ export default function Header({ visibility, handler, handler2 }) {
               </form>
               <div className=" pl-10">
                 <p
-                  className="com font-hairline sm:text-sm"
+                  className="font-hairline text-xs sm:text-sm"
                   style={{ color: "#17e9e0" }}
                 >
                   Common: movies series episode{" "}

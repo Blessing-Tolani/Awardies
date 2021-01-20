@@ -8,6 +8,9 @@
     scroll-behavior: smooth;
     outline:none !important;
 }
+::placeholder{
+  font-size:12px;
+}
 button:disabled{
   cursor:not-allowed;
  
