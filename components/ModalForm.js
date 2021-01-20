@@ -1,33 +1,33 @@
 
+
 import {useState} from "react";
 
+export default function ModalForm({nominateList, visibility ,handler2}){
 
-export default function ModalForm(result){
-
- 
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    // const toggleModal = () => setModalIsOpen(modalIsOpen);
-
-    let response = result.nominateList;
-    let resultLength = response.length;
-   
-    if(resultLength > 0){
-        console.log(resultLength );
-        setModalIsOpen(!modalIsOpen);
-    }
-   
+   let response = [nominateList];
+  
+   console.log(response);
+    let resultLength = nominateList.length;
+    console.log(resultLength)
+    // let display = visibility.modal;
+   function reset(){
+     handler2(!visibility);
+   }
+  
     return(
-        <div>
-        <div className={`${modalIsOpen ? "open" : "closed"} ...rest`}>
+      <>
+     {resultLength == 0 ? (<div></div>) :
+        (<div>
+        <div className={`${visibility? "open" : "closed"} ...rest`}>
         <div className="w3-modal full " style = {{display:"block"}} >
           <div className="w3-modal-content w3-animate-zoom">
               <div className="w3-container ">
                   <span className="w3-button w3-display-topright w3-large">
-                  <h2 >X</h2>
+                  <h2 onClick = {reset}  >X</h2>
                   </span>
               </div>
               <div className = "relative ">
-                <h2 className = " aaa text-gray-900  text-center">Nomination list</h2>
+                <h2 className = " aaa text-white  text-center">Nomination list</h2>
                 <div className = "flex justify-between">
                   <hr className = " w-1/3" />
                   <hr className = " w-1/3" />
@@ -77,7 +77,7 @@ export default function ModalForm(result){
       
       }
       .w3-modal-content {
-        background-color:#dea986 !important;
+        background-color:#7e685a !important;
       }
       .w3-card{
         box-shadow:none;
@@ -135,10 +135,10 @@ export default function ModalForm(result){
     }
   }
       `}</style>
-      </div>
-
+      </div>)}
+    </>
     )
-     
-   
+  
+  
 
 }

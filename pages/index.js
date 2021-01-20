@@ -9,11 +9,12 @@ import AlertTemplate from 'react-alert-template-basic'
 export default function IndexPage() {
   const [movie, setMovies] = useState([]);
   const [nomination, setNomination] = useState([]);
+   const [modal, setModal] = useState(true);
  
   return (
     <div>
       <Head>
-        <title>The Smatron</title>
+        <title>Awardies</title>
         <link
           href="https://fonts.googleapis.com/css2?family=ABeeZee&family=Sofia&family=Bodoni+Moda&family=Old+Standard+TT&display=swap"
           rel="stylesheet"
@@ -25,11 +26,12 @@ export default function IndexPage() {
         />
       </Head>
       <div>
-        <Header state={movie} handler={setMovies} />
+       
         <AlertProvider template={AlertTemplate} >
+          <Header state={movie} handler={setMovies} visibility = {modal} handler2 = {setModal} />
           <Main topic={movie} handler = {setNomination}/>
         </AlertProvider>
-        <ModalForm nominateList = {nomination} />
+        <ModalForm nominateList = {nomination} visibility = {modal} handler2 = {setModal} />
       </div>
     </div>
     

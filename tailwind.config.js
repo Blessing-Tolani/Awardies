@@ -18,7 +18,7 @@ module.exports = {
       },
       colors: {
         'accent-1': '#333',
-        'shopify':'#95BF46'
+        'shopify':'#17e9e0'
       },
     },
   },

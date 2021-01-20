@@ -1,5 +1,5 @@
 import Style from "../styles/header.module.css";
-
+import { useAlert } from 'react-alert'
 import { FaSearch } from "react-icons/fa";
 import { FaSortDown } from "react-icons/fa";
 import { RiNotificationBadgeFill } from "react-icons/ri";
@@ -8,54 +8,70 @@ import { useState } from "react";
 import {GrCentos} from "react-icons/gr";
 import {useEffect} from "react";
 
-export default function Header({ state, handler }) {
+export default function Header({ visibility, handler, handler2 }) {
+  const alert = useAlert();
   const [query, setQuery] = useState("");
+  const [step, setStep] = useState(0);
+ 
 
   async function accept() {
-    let url = `http://www.omdbapi.com/?apikey=2d34609c&s=the+witcher`;
-    let response = await fetch(url);
-    let result = await response.json();
-    handler(result);
+    try{
+      let url = `http://www.omdbapi.com/?apikey=2d34609c&s=the+witcher`;
+      let response = await fetch(url);
+      let result = await response.json();
+      handler(result);
+    }
+    catch(err){
+      alert.show('Error!, Try Again');
+    }
+    
   };
 
   useEffect(() => {
       accept();
   },[])
  
-
+function toggleForm(){
+  setStep(step + 1);
+}
+useEffect(() => {
+  handler2(!visibility);
+},[step])
   const formSubmit = async (e) => {
-    e.preventDefault();
-    let url = `http://www.omdbapi.com/?apikey=2d34609c&s=${query}`;
-
-    let response = await fetch(url);
-    let result = await response.json();
-    handler(result);
+    try{
+      e.preventDefault();
+      let url = `http://www.omdbapi.com/?apikey=2d34609c&s=${query}`;
+  
+      let response = await fetch(url);
+      let result = await response.json();
+      handler(result);
+    }catch(err){
+      alert.show(err);
+    }
+   
   };
 //   playsInline muted autoPlay loop 
   return (
     <>
       <div className={Style.header}>
         <div className={Style.bom}></div>
-        <video className={Style.dew} controls type="video/mp4" id="some">
+        <video className={Style.dew} playsInline muted autoPlay loop  controlsList = 'nodownload' type="video/mp4" id="some">
           <source src="video/head.mp4" />
         </video>
         <div className="absolute z-30 w-full ">
           <div className="flex  items-center justify-between  pl-5 h-40 md:pl-10">
             <div className="flex items-center">
-              <span className="text-2xl md:text-3xl text-shopify  z-10">
+              <span className="text-xl  text-white z-10">
                 <GrCentos />
               </span>
-              <h1 className="font-serif text-white text-2xl pl-2 mobile:text-xl ">
-                {" "}
-                The
-                <span className="text-shopify font-extrabold pl-1">
-                  {" "}
-                  Smatron
-                </span>
+              <h1 className="font-serif  text-2xl pl-2 mobile:text-xl " style = {{color:'#17e9e0'}}>
+             
+                  Awardies
+               
               </h1>
             </div>
             <div>
-              <RiNotificationBadgeFill  className=" hover:cursor-pointer text-white  mr-20  text-3xl medium:text-2xl   hover:text-gray-500" />
+              <a title= "View nomination list" className="hover:cursor-pointer" ><RiNotificationBadgeFill onClick = {toggleForm} className=" hover:cursor-pointer text-white  mr-20  text-3xl medium:text-2xl   hover:text-gray-500" /></a>
             </div>
           </div>
           <div>
@@ -112,8 +128,8 @@ export default function Header({ state, handler }) {
                   </div>
                 </div>
               </form>
-              <div className="text-gray-400 pl-10">
-                <p className="com text-shopify sm:text-sm">
+              <div className=" pl-10">
+                <p className="com font-hairline sm:text-sm" style = {{color:'#17e9e0'}} >
                   Common: movies series episode{" "}
                 </p>
               </div>

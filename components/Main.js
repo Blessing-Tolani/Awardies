@@ -1,29 +1,44 @@
 
 import { useAlert } from 'react-alert'
-import {useEffect} from "react";
+import {useEffect, useRef} from "react";
 import {useState} from "react";
 
 export default function Main({topic,handler}) { 
-  var lit;
+const  [count, setCount] = useState(0)
+const [status, setStatus] = useState(-1)
+
+const [listArray, setlistArray] = useState([])
   const alert = useAlert();
   let data = [];
-  let listArray = [];
   let result = topic;
-  lit = 500;
- 
+  let information;
+  
+  
   function getDetails(num){
-      let information = data[num];
-      listArray.push(information);
-      handler(listArray);
-
+    setCount(count+1);
+  
+    information = data[num];
+    setlistArray(information);
+    setStatus(num)
+    
+   
   }
- 
- 
+  useEffect(() => {
+    console.log(listArray);
+    handler(listArray);
+  },[count])
+
+  // useEffect(() => {
+  //   effect
+  //   return () => {
+  //     cleanup
+  //   }
+  // }, [input])
  
   if(result.Response  == 'True'){
     let resultArray = result.Search;
     let resultArrayLength = resultArray.length;
-    for( let i=0; i<1; i++){
+    for( let i=0; i<resultArrayLength; i++){
       data.push(resultArray[i]);
       }
    
@@ -37,6 +52,8 @@ export default function Main({topic,handler}) {
       else{
         
       }
+         
+ 
 
       return(
       <div className="  blog-container flex flex-wrap w-full  justify-evenly">
@@ -58,8 +75,8 @@ export default function Main({topic,handler}) {
                     <p className="w3-center un5">{Year}</p>
                   </div>
                   <div className="text-center mt-2 mb-1 ">
-                    <button type="submit" id="button"  onClick = { () => getDetails(index)} className="onebutton">
-                      Nominate
+                  <button disabled = {status == index ? true: false} type="submit" id="button"  onClick = { () => {getDetails(index); }} className="onebutton">
+                     {status == index ? 'Nominated': 'Nominate'}
                     </button>
                   </div>
                 </div> 
