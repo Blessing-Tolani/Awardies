@@ -1,61 +1,64 @@
 import Style from "../styles/header.module.css";
-import { useAlert } from 'react-alert'
+import { useAlert } from "react-alert";
 import { FaSearch } from "react-icons/fa";
 import { FaSortDown } from "react-icons/fa";
 import { RiNotificationBadgeFill } from "react-icons/ri";
-import Main from "../components/Main";
-import { useState } from "react";
-import {GrCentos} from "react-icons/gr";
-import {useEffect} from "react";
+import { useState, useEffect } from "react";
+import { GrCentos } from "react-icons/gr";
 
 export default function Header({ visibility, handler, handler2 }) {
   const alert = useAlert();
   const [query, setQuery] = useState("");
   const [step, setStep] = useState(0);
- 
 
   async function accept() {
-    try{
-      let url = `http://www.omdbapi.com/?apikey=2d34609c&s=the+witcher`;
+    try {
+      let url = `https://www.omdbapi.com/?apikey=2d34609c&s=the+witcher`;
       let response = await fetch(url);
       let result = await response.json();
       handler(result);
+    } catch (err) {
+      alert.show("Error!, Try Again");
     }
-    catch(err){
-      alert.show('Error!, Try Again');
-    }
-    
-  };
+  }
 
   useEffect(() => {
-      accept();
-  },[])
- 
-function toggleForm(){
-  setStep(step + 1);
-}
-useEffect(() => {
-  handler2(!visibility);
-},[step])
+    accept();
+  }, []);
+
+  function toggleForm() {
+    setStep(step + 1);
+  }
+  useEffect(() => {
+    handler2(!visibility);
+  }, [step]);
   const formSubmit = async (e) => {
-    try{
-      e.preventDefault();
-      let url = `http://www.omdbapi.com/?apikey=2d34609c&s=${query}`;
-  
+    e.preventDefault();
+    try {
+      let url = `https://www.omdbapi.com/?apikey=2d34609c&s=${query}`;
+
       let response = await fetch(url);
       let result = await response.json();
       handler(result);
-    }catch(err){
+    } catch (err) {
       alert.show(err);
     }
-   
   };
-//   playsInline muted autoPlay loop 
+  //   playsInline muted autoPlay loop
   return (
     <>
       <div className={Style.header}>
         <div className={Style.bom}></div>
-        <video className={Style.dew} playsInline muted autoPlay loop  controlsList = 'nodownload' type="video/mp4" id="some">
+        <video
+          className={Style.dew}
+          playsInline
+          muted
+          autoPlay
+          loop
+          controlsList="nodownload"
+          type="video/mp4"
+          id="some"
+        >
           <source src="video/head.mp4" />
         </video>
         <div className="absolute z-30 w-full ">
@@ -64,14 +67,20 @@ useEffect(() => {
               <span className="text-xl  text-white z-10">
                 <GrCentos />
               </span>
-              <h1 className="font-serif  text-2xl pl-2 mobile:text-xl " style = {{color:'#17e9e0'}}>
-             
-                  Awardies
-               
+              <h1
+                className="font-serif  text-2xl pl-2 mobile:text-xl "
+                style={{ color: "#17e9e0" }}
+              >
+                Awardies
               </h1>
             </div>
             <div>
-              <a title= "View nomination list" className="hover:cursor-pointer" ><RiNotificationBadgeFill onClick = {toggleForm} className=" hover:cursor-pointer text-white  mr-20  text-3xl medium:text-2xl   hover:text-gray-500" /></a>
+              <a title="View nomination list" className="hover:cursor-pointer">
+                <RiNotificationBadgeFill
+                  onClick={toggleForm}
+                  className=" hover:cursor-pointer text-white  mr-6 md:mr-20  text-3xl medium:text-2xl   hover:text-gray-500"
+                />
+              </a>
             </div>
           </div>
           <div>
@@ -79,7 +88,7 @@ useEffect(() => {
               <h1 className="tracking-wider font-semibold text-center text-white text-5xl tablet:text-4xl  medium:text-3xl  mobile:text-2xl phone:text-xl font-old">
                 Movie Awards for Entrepreneurs
               </h1>
-              <h3 className="text-center text-white text-xl md:text-2xl mobile:text-lg font-old">
+              <h3 className="text-center text-white text-lg md:text-xl mobile:text-lg font-old">
                 Search and Nominate your Favourite Movies
               </h3>
             </div>
@@ -129,7 +138,10 @@ useEffect(() => {
                 </div>
               </form>
               <div className=" pl-10">
-                <p className="com font-hairline sm:text-sm" style = {{color:'#17e9e0'}} >
+                <p
+                  className="com font-hairline sm:text-sm"
+                  style={{ color: "#17e9e0" }}
+                >
                   Common: movies series episode{" "}
                 </p>
               </div>
